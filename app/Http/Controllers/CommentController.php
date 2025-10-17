@@ -6,13 +6,11 @@ use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CommentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    use AuthorizesRequests;
 
     public function store(Request $request, Post $post)
     {
@@ -26,19 +24,6 @@ class CommentController extends Controller
         ]);
 
         return back()->with('success', 'Comment added successfully!');
-    }
-
-    public function update(Request $request, Comment $comment)
-    {
-        $this->authorize('update', $comment);
-
-        $validated = $request->validate([
-            'body' => 'required|max:500',
-        ]);
-
-        $comment->update($validated);
-
-        return back()->with('success', 'Comment updated successfully!');
     }
 
     public function destroy(Comment $comment)

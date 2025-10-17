@@ -7,26 +7,17 @@ use App\Models\User;
 
 class CommentPolicy
 {
-    /**
-     * Determine if the user can create comments.
-     */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return true;
     }
 
-    /**
-     * Determine if the user can update the comment.
-     */
-    public function update(User $user, Comment $comment)
+    public function update(User $user, Comment $comment): bool
     {
         return $user->id === $comment->user_id;
     }
 
-    /**
-     * Determine if the user can delete the comment.
-     */
-    public function delete(User $user, Comment $comment)
+    public function delete(User $user, Comment $comment): bool
     {
         return $user->id === $comment->user_id;
     }
