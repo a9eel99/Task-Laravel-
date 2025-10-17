@@ -13,14 +13,14 @@ class DatabaseSeeder extends Seeder
     {
         // Create users
         $user1 = User::create([
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
+            'name' => 'Aseel',
+            'email' => 'aseel@example.com',
             'password' => bcrypt('password'),
         ]);
 
         $user2 = User::create([
-            'name' => 'Jane Smith',
-            'email' => 'jane@example.com',
+            'name' => 'ziad',
+            'email' => 'ziad@example.com',
             'password' => bcrypt('password'),
         ]);
 

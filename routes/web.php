@@ -10,9 +10,8 @@ Route::get('/', function () {
 
 // Public routes
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
-// Protected routes
+// Protected routes (يجب أن تكون قبل {post})
 Route::middleware('auth')->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
@@ -29,5 +28,7 @@ Route::middleware('auth')->group(function () {
         return redirect()->route('posts.index');
     })->name('dashboard');
 });
+
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 require __DIR__.'/auth.php';
